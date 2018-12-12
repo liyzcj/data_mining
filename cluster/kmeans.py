@@ -37,11 +37,8 @@ class Kmean():
         return:
             samples: numpy matrix with shape(k,n), k is the number of samples
         """
-        dim = data.shape[1]  #Dimentions
-        r = np.random.rand(k, dim)  #random number
-        ub = np.max(data, axis=0)  #up bound
-        lb = np.min(data, axis=0)  #low bound
-        samples = r * ub + (1 - r) * lb  #samples
+        idx  = np.random.choice(data.shape[0], k, replace = False)
+        samples = data[idx]
         return samples
 
     def plot(self, data, centers=None, labels=None, ax = None):
@@ -176,5 +173,5 @@ class Kmean():
         return centers, label
 if __name__ == "__main__":
     k = Kmean()
-    data = k.generate_examples(100,3,3)
+    data = k.generate_examples(100,3,2)
     centers, labels = k.solve(data, 3, visualization=True)
