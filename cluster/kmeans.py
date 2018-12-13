@@ -94,7 +94,6 @@ class Kmean():
         Output:
             label: the label of clustered data
         """
-        stay = 1 # picture stay time
 
         #################visual####
         if visualization:
@@ -109,7 +108,7 @@ class Kmean():
                 ax.grid(False)
                 ax._axis3don  = False
                 self.plot(data, ax=ax)
-            plt.pause(stay)
+            plt.waitforbuttonpress()
         #################visual####
 
         old_centers = None
@@ -125,7 +124,7 @@ class Kmean():
                 ax.grid(False)
                 ax._axis3don  = False
                 self.plot(data, centers, ax=ax)
-            plt.pause(stay)
+            plt.waitforbuttonpress()
 
         while True:
             # compute the clusters of centers
@@ -141,7 +140,7 @@ class Kmean():
                     ax.grid(False)
                     ax._axis3don  = False
                     self.plot(data, centers,label, ax=ax)
-                plt.pause(stay)
+                plt.waitforbuttonpress()
         #################visual####
 
             # save old centers for compare with new
@@ -160,7 +159,7 @@ class Kmean():
                     ax.grid(False)
                     ax._axis3don  = False
                     self.plot(data, centers, label, ax=ax)
-                plt.pause(stay)
+                plt.waitforbuttonpress()
         #################visual####
 
             # stop when centers don't move
@@ -173,5 +172,5 @@ class Kmean():
         return centers, label
 if __name__ == "__main__":
     k = Kmean()
-    data = k.generate_examples(100,3,2)
+    data = k.generate_examples(100,3,3)
     centers, labels = k.solve(data, 3, visualization=True)
